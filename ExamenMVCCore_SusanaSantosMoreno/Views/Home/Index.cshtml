@@ -1,8 +1,66 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData ["Title"] = "Libros"; 
+    List<Genero> generos = ViewData ["Generos"] as List<Genero>;
 }
+@model List<Libro>
+<div id="libros">
+    <h1 class="text-center mb-3">Libros</h1>
+    <div>
+    @foreach (Genero genero in generos) {
+        <span>@Html.ActionLink(genero.NombreGenero, "Index", "Home"
+             , new { idGenero = genero.IdGenero })</span>
+    }
+    </div>
+    <form method="post" class="mb-3">
+        <div class="mb-3">
+            <label class="form-label">Genero</label>
+            <select name="IdGenero" class="form-control">
+                @foreach (Genero genero in generos) {
+                    <option value="@genero.IdGenero">@genero.NombreGenero</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Buscar</button>
+        <button type="submit" class="btn btn-outline-dark">
+            @Html.ActionLink("Limpiar", "Index", "Home")
+        </button>
+        <Button class="btn btn-outline-dark float-right">
+            @Html.ActionLink("Nuevo Libro", "CreateLibros", "Home")
+        </Button>
+    </form>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Genero</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Libro libro in Model) {
+                String genero = "";
+                foreach (Genero gen in generos) {
+                    if (gen.IdGenero == libro.IdGenero) {
+                        genero = gen.NombreGenero;
+                    }
+                }
+                <tr>
+                    <td>@libro.Titulo</td>
+                    <td>@libro.Autor</td>
+                    <td>@genero</td>
+                    <td>
+                        @Html.ActionLink("Detalle", "DetalleLibros", "Home"
+                     , new { idLibro = libro.IdLibro })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "EditLibros", "Home"
+                     , new { idLibro = libro.IdLibro })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

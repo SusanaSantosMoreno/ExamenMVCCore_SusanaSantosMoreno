@@ -1,0 +1,33 @@
+﻿@{
+    ViewData ["Title"] = "Generos";
+}
+@model List<Genero>
+<div id="libros">
+    <h1 class="text-center mb-3">Generos</h1>
+    <span class="mb-2">@Html.ActionLink("Nuevo Genero", "CreateGeneros", "Generos")</span>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Genero</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Genero genero in Model) {
+                <tr>
+                    <td class="text-center">@genero.NombreGenero</td>
+                    <td>
+                        @Html.ActionLink("Editar", "EditGeneros", "Generos"
+                     , new { idGenero = genero.IdGenero })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Eliminar", "DeleteGeneros", "Generos"
+                     , new { idGenero = genero.IdGenero })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

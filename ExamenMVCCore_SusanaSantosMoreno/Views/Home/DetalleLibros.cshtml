@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData ["Title"] = "Detalle Libros";
+    Genero genero = ViewData ["Genero"] as Genero;
+}
+@model Libro
+    <div class="card mx-auto" style="width: 18rem;">
+        <img src="~/Images/@Model.Imagen" class="card-img-top w-50 mx-auto" />
+        <div class="card-body">
+            <h5 class="card-title">@Model.Titulo</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@Model.Autor - @genero.NombreGenero</h6>
+            <p class="card-text">@Model.Sinopsis</p>
+        </div>
+    </div>

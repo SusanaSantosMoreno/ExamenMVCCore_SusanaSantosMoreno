@@ -1,0 +1,38 @@
+﻿@{
+    ViewData ["Title"] = "Editar Libro";
+    List<Genero> generos = ViewData ["Generos"] as List<Genero>;
+    Genero gen = ViewData ["Genero"] as Genero; 
+}
+@model Libro 
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Título</label>
+        <input type="text" class="form-control" name="IdLibro" value="@Model.IdLibro" style="display: none">
+        <input type="text" class="form-control" name="titulo" value="@Model.Titulo">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Autor</label>
+        <input type="text" class="form-control" name="Autor" value="@Model.Autor">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Sinopsis</label>
+        <textarea class="form-control" name="Sinopsis" rows="3">@Model.Sinopsis</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Imagen</label>
+        <input type="text" class="form-control" name="Imagen" value="@Model.Imagen">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Id Genero</label>
+        <select name="IdGenero" class="form-control">
+            @foreach (Genero genero in generos) {
+                if (gen.IdGenero == genero.IdGenero) {
+                    <option value="@genero.IdGenero" selected>@genero.NombreGenero</option>
+                } else {
+                    <option value="@genero.IdGenero">@genero.NombreGenero</option>
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-dark">Editar Libro</button>
+</form>

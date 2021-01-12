@@ -1,0 +1,12 @@
+﻿@{
+    ViewData ["Title"] = "Editar Genero";
+}
+@model Genero
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Nombre Genero</label>
+        <input type="text" class="form-control" name="IdGenero" value="@Model.IdGenero" style="display: none">
+        <input type="text" class="form-control" name="Genero" value="@Model.NombreGenero">
+    </div>
+    <button type="submit" class="btn btn-outline-dark">Editar Genero</button>
+</form>
